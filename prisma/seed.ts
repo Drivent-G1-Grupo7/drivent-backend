@@ -16,7 +16,7 @@ async function main() {
     });
   }
 
-  let types = await prisma.ticketType.findFirst();
+  let types = await prisma.ticketType.findMany();
   if (!types) {
     await prisma.ticketType.createMany({
      data: [
@@ -27,7 +27,7 @@ async function main() {
     })
   }
 
-  console.log(event);
+  console.log(event, types);
 }
 
 main()
