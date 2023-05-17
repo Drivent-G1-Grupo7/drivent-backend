@@ -17,7 +17,7 @@ async function main() {
   }
 
   let types = await prisma.ticketType.findMany();
-  if (!types) {
+  if (types.length === 0) {
     await prisma.ticketType.createMany({
      data: [
         { name: 'online', price: 100, isRemote: true, includesHotel: false },
@@ -27,7 +27,44 @@ async function main() {
     })
   }
 
-  console.log(event, types);
+  let hotels = await prisma.hotel.findMany();
+  if (hotels.length === 0) {
+    await prisma.hotel.createMany({
+     data: [
+        { name: 'Driven Resort', image: 'hotel1Img' },
+        { name: 'Driven Palace', image: 'hotel2Img' },
+        { name: 'Driven World', image: 'hotel3Img' },
+      ],
+    })
+  }
+
+  let rooms = await prisma.room.findMany();
+  if (rooms.length === 0) {
+    await prisma.room.createMany({
+     data: [
+        { name: '100', capacity: 1, hotelId: 1 },
+        { name: '101', capacity: 2, hotelId: 1 },
+        { name: '102', capacity: 1, hotelId: 1 },
+        { name: '103', capacity: 3, hotelId: 1 },
+        { name: '200', capacity: 1, hotelId: 2 },
+        { name: '201', capacity: 1, hotelId: 2 },
+        { name: '202', capacity: 1, hotelId: 2 },
+        { name: '203', capacity: 2, hotelId: 2 },
+        { name: '204', capacity: 2, hotelId: 2 },
+        { name: '205', capacity: 2, hotelId: 2 },
+        { name: '300', capacity: 1, hotelId: 3 },
+        { name: '301', capacity: 1, hotelId: 3 },
+        { name: '302', capacity: 1, hotelId: 3 },
+        { name: '303', capacity: 1, hotelId: 3 },
+        { name: '304', capacity: 1, hotelId: 3 },
+        { name: '305', capacity: 1, hotelId: 3 },
+        { name: '306', capacity: 1, hotelId: 3 },
+        { name: '307', capacity: 1, hotelId: 3 },
+      ],
+    })
+  }
+
+  console.log(event, types, hotels, rooms);
 }
 
 main()
