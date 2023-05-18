@@ -31,9 +31,9 @@ async function main() {
   if (hotels.length === 0) {
     await prisma.hotel.createMany({
      data: [
-        { name: 'Driven Resort', image: 'hotel1Img' },
-        { name: 'Driven Palace', image: 'hotel2Img' },
-        { name: 'Driven World', image: 'hotel3Img' },
+        { name: 'Driven Resort', image: 'https://blog.hotelpontaverde.com.br/wp-content/uploads/2019/09/Resort-ou-Hotel-Hotel-Ponta-Verde-France%CC%82s.png' },
+        { name: 'Driven Palace', image: 'https://www.oetkercollection.com/media/42386/meu-projeto-2.jpg?anchor=center&mode=crop&quality=85&width=1000&height=500&rnd=133154133310000000' },
+        { name: 'Driven World', image: 'https://pix8.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?ca=6&ce=1&s=1024x768' },
       ],
     })
   }
