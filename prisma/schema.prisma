@@ -11,15 +11,15 @@ datasource db {
 }
 
 model User {
-  id         Int          @id @default(autoincrement())
-  email      String       @unique @db.VarChar(255)
-  password   String       @db.VarChar(255)
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
-  Session    Session[]
-  Enrollment Enrollment[]
-  Booking    Booking[]
-  Activity   Activity[]
+  id           Int            @id @default(autoincrement())
+  email        String         @unique @db.VarChar(255)
+  password     String         @db.VarChar(255)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  Session      Session[]
+  Enrollment   Enrollment[]
+  Booking      Booking[]
+  Registration Registration[]
 }
 
 model Session {
@@ -141,13 +141,22 @@ model Booking {
 }
 
 model Activity {
+  id           Int            @id @default(autoincrement())
+  name         String         @db.VarChar(255)
+  date         String         @db.VarChar(255)
+  startTime    String         @db.VarChar(255)
+  endTime      String         @db.VarChar(255)
+  totalSpots   Int
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  Registration Registration[]
+}
+
+model Registration {
   id         Int      @id @default(autoincrement())
-  name       String   @db.VarChar(255)
-  date       String   @db.VarChar(255)
-  startTime  String   @db.VarChar(255)
-  endTime    String   @db.VarChar(255)
-  totalSpots Int
-  User       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activity   Activity @relation(fields: [activityId], references: [id])
+  activityId Int
+  user       User     @relation(fields: [userId], references: [id])
   userId     Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt

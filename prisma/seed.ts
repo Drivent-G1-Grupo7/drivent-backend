@@ -19,7 +19,7 @@ async function main() {
   let types = await prisma.ticketType.findMany();
   if (types.length === 0) {
     await prisma.ticketType.createMany({
-     data: [
+      data: [
         { name: 'online', price: 100, isRemote: true, includesHotel: false },
         { name: 'presencial sem hotel', price: 250, isRemote: false, includesHotel: false },
         { name: 'presencial com hotel', price: 600, isRemote: false, includesHotel: true },
@@ -30,7 +30,7 @@ async function main() {
   let hotels = await prisma.hotel.findMany();
   if (hotels.length === 0) {
     await prisma.hotel.createMany({
-     data: [
+      data: [
         { name: 'Driven Resort', image: 'https://blog.hotelpontaverde.com.br/wp-content/uploads/2019/09/Resort-ou-Hotel-Hotel-Ponta-Verde-France%CC%82s.png' },
         { name: 'Driven Palace', image: 'https://www.oetkercollection.com/media/42386/meu-projeto-2.jpg?anchor=center&mode=crop&quality=85&width=1000&height=500&rnd=133154133310000000' },
         { name: 'Driven World', image: 'https://pix8.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?ca=6&ce=1&s=1024x768' },
@@ -41,7 +41,7 @@ async function main() {
   let rooms = await prisma.room.findMany();
   if (rooms.length === 0) {
     await prisma.room.createMany({
-     data: [
+      data: [
         { name: '100', capacity: 1, hotelId: 1 },
         { name: '101', capacity: 2, hotelId: 1 },
         { name: '102', capacity: 1, hotelId: 1 },
@@ -65,6 +65,22 @@ async function main() {
   }
 
   console.log(event, types, hotels, rooms);
+
+  let activities = await prisma.activity.findMany();
+  if (activities.length === 0) {
+    await prisma.activity.createMany({
+      data: [
+        { name: "Codar drivent 1", date: "23/05", startTime: "09:00", endTime: "12:00", totalSpots: 30 },
+        { name: "Codar drivent 2", date: "23/05", startTime: "13:00", endTime: "17:00", totalSpots: 30 },
+        { name: "Codar drivent 3", date: "24/05", startTime: "09:00", endTime: "12:00", totalSpots: 30 },
+        { name: "Codar drivent 4", date: "24/05", startTime: "13:00", endTime: "17:00", totalSpots: 30 },
+        { name: "Codar drivent 5", date: "25/05", startTime: "09:00", endTime: "12:00", totalSpots: 30 },
+        { name: "Codar drivent 6", date: "25/05", startTime: "13:00", endTime: "17:00", totalSpots: 30 },
+        { name: "Codar drivent 7", date: "26/05", startTime: "09:00", endTime: "12:00", totalSpots: 30 },
+        { name: "Codar drivent 8", date: "26/05", startTime: "13:00", endTime: "17:00", totalSpots: 30 },
+      ]
+    })
+  }
 }
 
 main()
