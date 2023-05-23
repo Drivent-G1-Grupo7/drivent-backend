@@ -1,20 +1,33 @@
 import { prisma } from '@/config';
 
-async function findAllActivities() {
-  return prisma.activity.findMany();
-}
-
-async function findActivitiesByEventId(EventId: number) {
+async function findById(activityId: number) {
   return prisma.activity.findFirst({
     where: {
-      id: EventId,
+      id: activityId
+    }
+  });
+}
+
+async function findActivitiesByEventId(eventId: number) {
+  return prisma.activity.findFirst({
+    where: {
+      eventId,
+    }
+  })
+}
+
+async function findAllActivitiesByEventId(eventId: number) {
+  return prisma.activity.findMany({
+    where: {
+      eventId,
     }
   });
 }
 
 const activityRepository = {
-  findAllActivities,
+  findById,
   findActivitiesByEventId,
+  findAllActivitiesByEventId,
 };
 
 export default activityRepository;
