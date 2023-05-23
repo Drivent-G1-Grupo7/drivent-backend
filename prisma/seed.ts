@@ -70,14 +70,14 @@ async function main() {
   if (activities.length === 0) {
     await prisma.activity.createMany({
       data: [
-        { name: "Codar drivent 1", date: "23/05", startTime: "09:00", endTime: "12:00", totalSpots: 30 },
-        { name: "Codar drivent 2", date: "23/05", startTime: "13:00", endTime: "17:00", totalSpots: 30 },
-        { name: "Codar drivent 3", date: "24/05", startTime: "09:00", endTime: "12:00", totalSpots: 30 },
-        { name: "Codar drivent 4", date: "24/05", startTime: "13:00", endTime: "17:00", totalSpots: 30 },
-        { name: "Codar drivent 5", date: "25/05", startTime: "09:00", endTime: "12:00", totalSpots: 30 },
-        { name: "Codar drivent 6", date: "25/05", startTime: "13:00", endTime: "17:00", totalSpots: 30 },
-        { name: "Codar drivent 7", date: "26/05", startTime: "09:00", endTime: "12:00", totalSpots: 30 },
-        { name: "Codar drivent 8", date: "26/05", startTime: "13:00", endTime: "17:00", totalSpots: 30 },
+        { name: "Codar drivent 1", date: "23/05", startTime: "09:00", endTime: "12:00", totalSpots: 30, eventId: 1 },
+        { name: "Codar drivent 2", date: "23/05", startTime: "13:00", endTime: "17:00", totalSpots: 30, eventId: 1 },
+        { name: "Codar drivent 3", date: "24/05", startTime: "09:00", endTime: "12:00", totalSpots: 30, eventId: 1 },
+        { name: "Codar drivent 4", date: "24/05", startTime: "13:00", endTime: "17:00", totalSpots: 30, eventId: 1 },
+        { name: "Codar drivent 5", date: "25/05", startTime: "09:00", endTime: "12:00", totalSpots: 30, eventId: 1 },
+        { name: "Codar drivent 6", date: "25/05", startTime: "13:00", endTime: "17:00", totalSpots: 30, eventId: 1 },
+        { name: "Codar drivent 7", date: "26/05", startTime: "09:00", endTime: "12:00", totalSpots: 30, eventId: 1 },
+        { name: "Codar drivent 8", date: "26/05", startTime: "13:00", endTime: "17:00", totalSpots: 30, eventId: 1 },
       ]
     })
   }

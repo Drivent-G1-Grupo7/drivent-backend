@@ -32,14 +32,15 @@ model Session {
 }
 
 model Event {
-  id                 Int      @id @default(autoincrement())
-  title              String   @db.VarChar(255)
-  backgroundImageUrl String   @db.VarChar(255)
-  logoImageUrl       String   @db.VarChar(255)
+  id                 Int        @id @default(autoincrement())
+  title              String     @db.VarChar(255)
+  backgroundImageUrl String     @db.VarChar(255)
+  logoImageUrl       String     @db.VarChar(255)
   startsAt           DateTime
   endsAt             DateTime
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+  Activity           Activity[]
 }
 
 model Enrollment {
@@ -147,6 +148,8 @@ model Activity {
   startTime    String         @db.VarChar(255)
   endTime      String         @db.VarChar(255)
   totalSpots   Int
+  eventId      Int
+  Event        Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
   Registration Registration[]
@@ -154,7 +157,7 @@ model Activity {
 
 model Registration {
   id         Int      @id @default(autoincrement())
-  activity   Activity @relation(fields: [activityId], references: [id])
+  Activity   Activity @relation(fields: [activityId], references: [id])
   activityId Int
   user       User     @relation(fields: [userId], references: [id])
   userId     Int
