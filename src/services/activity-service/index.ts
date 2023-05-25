@@ -3,6 +3,7 @@ import enrollmentRepository from '@/repositories/enrollment-repository';
 import { notFoundError } from '@/errors';
 import ticketsRepository from '@/repositories/tickets-repository';
 import { cannotListActivitiesError } from '@/errors/cannot-list-activities-error';
+import eventRepository from '@/repositories/event-repository';
 
 
 async function checkActivities(userId: number) {
@@ -10,6 +11,7 @@ async function checkActivities(userId: number) {
   if (!enrollment) {
     throw notFoundError();
   }
+
   const ticket = await ticketsRepository.findTicketByEnrollmentId(enrollment.id);
 
   if (!ticket || ticket.status === 'RESERVED' || ticket.TicketType.isRemote || !ticket.TicketType.includesHotel) {
@@ -17,8 +19,11 @@ async function checkActivities(userId: number) {
   }
 }
 
-async function listEventActivities(userId: number, eventId: number) {
+async function listEventActivities(userId: number) {
   await checkActivities(userId);
+
+  const event = await eventRepository.findFirst()
+  const eventId = event.id
 
   const activities = await activityRepository.findAllActivitiesByEventId(eventId);
   if (!activities || activities.length === 0) {
