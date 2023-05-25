@@ -4,7 +4,7 @@ import { AuthenticatedRequest } from '@/middlewares';
 import registrationService from '@/services/registration-service';
 
 
-export async function listBooking(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+export async function listActivities(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   try {
     const { userId } = req;
     const registration = await registrationService.getRegistration(userId);
