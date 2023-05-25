@@ -148,6 +148,7 @@ model Activity {
   startTime    String         @db.VarChar(255)
   endTime      String         @db.VarChar(255)
   totalSpots   Int
+  location     String         @db.VarChar(255)
   eventId      Int
   Event        Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
   createdAt    DateTime       @default(now())
