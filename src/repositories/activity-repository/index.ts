@@ -1,5 +1,7 @@
 import { Activity } from '@prisma/client';
+
 import { prisma } from '@/config';
+
 
 async function findById(activityId: number): Promise<Activity> {
   return prisma.activity.findFirst({
@@ -25,10 +27,15 @@ async function findAllActivitiesByEventId(eventId: number) {
   });
 }
 
+async function findAllActivities() {
+  return prisma.activity.findMany();
+}
+
 const activityRepository = {
   findById,
   findActivitiesByEventId,
   findAllActivitiesByEventId,
+  findAllActivities,
 };
 
 export default activityRepository;
