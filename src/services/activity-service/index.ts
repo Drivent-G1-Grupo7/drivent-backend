@@ -21,9 +21,10 @@ async function checkActivities(userId: number) {
 async function listEventActivities(userId: number) {
   await checkActivities(userId);
 
-  // const event = await eventRepository.findFirst();
-  // const eventId = event.id;
-  // console.log(event);
+
+  const event = await eventRepository.findFirst();
+  const eventId = event.id;
+
 
   const activities = await activityRepository.findAllActivities();
   if (!activities || activities.length === 0) {

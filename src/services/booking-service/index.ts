@@ -68,7 +68,7 @@ const bookingService = {
   changeBookingRoomById,
   checkEnrollmentTicket,
   checkValidBooking,
-  getBookingByRoomId
+  getBookingByRoomId,
 };
 
 export default bookingService;

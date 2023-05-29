@@ -1,5 +1,7 @@
-import { prisma } from '@/config';
 import { Activity } from '@prisma/client';
+
+import { prisma } from '@/config';
+
 
 async function findById(activityId: number): Promise<Activity> {
   return prisma.activity.findFirst({

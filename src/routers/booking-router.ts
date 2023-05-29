@@ -4,6 +4,11 @@ import { bookingRoom, changeBooking, listBooking, showAllBookings } from '@/cont
 
 const bookingRouter = Router();
 
-bookingRouter.all('/*', authenticateToken).get('', listBooking).get('/:roomId', showAllBookings).post('', bookingRoom).put('/:bookingId', changeBooking);
+bookingRouter
+  .all('/*', authenticateToken)
+  .get('', listBooking)
+  .get('/:roomId', showAllBookings)
+  .post('', bookingRoom)
+  .put('/:bookingId', changeBooking);
 
 export { bookingRouter };
