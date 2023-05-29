@@ -5,9 +5,9 @@ import { changeRegistration, listActivities, registerActivity } from '@/controll
 const registrationRouter = Router();
 
 registrationRouter
-    .all('/*', authenticateToken)
-    .get('', listActivities)
-    .post('', registerActivity)
-    .put('/:registrationId', changeRegistration);
+  .all('/*', authenticateToken)
+  .get('', listActivities)
+  .post('', registerActivity)
+  .put('/:registrationId', changeRegistration);
 
 export { registrationRouter };

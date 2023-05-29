@@ -3,7 +3,6 @@ import httpStatus from 'http-status';
 import { AuthenticatedRequest } from '@/middlewares';
 import registrationService from '@/services/registration-service';
 
-
 export async function listActivities(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   try {
     const { userId } = req;
@@ -22,7 +21,7 @@ export async function registerActivity(req: AuthenticatedRequest, res: Response,
     const { userId } = req;
     const { activityId } = req.body as Record<string, number>;
 
-    const registration = await registrationService.registerActivityById(userId, activityId)
+    const registration = await registrationService.registerActivityById(userId, activityId);
 
     return res.status(httpStatus.OK).send({
       registrationId: registration.id,

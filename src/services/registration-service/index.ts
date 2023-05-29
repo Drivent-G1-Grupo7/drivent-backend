@@ -19,14 +19,14 @@ async function checkEnrollmentTicket(userId: number) {
 
 async function checkForValidRegistration(activityId: number) {
   const activity = await activityRepository.findById(activityId);
-  const registrations = await registrationRepository.findByActivityId(activityId)
+  const registrations = await registrationRepository.findByActivityId(activityId);
 
   if (!activity) throw notFoundError();
   if (activity.totalSpots <= registrations.length) throw cannotRegisterError();
 }
 
 async function getRegistration(userId: number) {
-  const registration = await registrationRepository.findByUserId(userId)
+  const registration = await registrationRepository.findByUserId(userId);
   if (!registration) throw notFoundError();
 
   return registration;

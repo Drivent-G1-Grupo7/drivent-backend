@@ -54,7 +54,7 @@ export async function showAllBookings(req: AuthenticatedRequest, res: Response, 
   if (isNaN(roomId)) return res.sendStatus(httpStatus.BAD_REQUEST);
   try {
     const bookingLength = await bookingService.getBookingByRoomId(roomId);
-    return res.status(httpStatus.OK).send({bookingLength});
+    return res.status(httpStatus.OK).send({ bookingLength });
   } catch (error) {
     next(error);
   }
