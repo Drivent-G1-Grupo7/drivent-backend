@@ -5,7 +5,6 @@ import ticketsRepository from '@/repositories/tickets-repository';
 import { cannotListActivitiesError } from '@/errors/cannot-list-activities-error';
 import eventRepository from '@/repositories/event-repository';
 
-
 async function checkActivities(userId: number) {
   const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
   if (!enrollment) {
@@ -22,10 +21,12 @@ async function checkActivities(userId: number) {
 async function listEventActivities(userId: number) {
   await checkActivities(userId);
 
-  const event = await eventRepository.findFirst()
-  const eventId = event.id
 
-  const activities = await activityRepository.findAllActivitiesByEventId(eventId);
+  const event = await eventRepository.findFirst();
+  const eventId = event.id;
+
+
+  const activities = await activityRepository.findAllActivities();
   if (!activities || activities.length === 0) {
     throw notFoundError();
   }
@@ -34,5 +35,5 @@ async function listEventActivities(userId: number) {
 
 export default {
   checkActivities,
-  listEventActivities
+  listEventActivities,
 };

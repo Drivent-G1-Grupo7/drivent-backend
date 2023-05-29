@@ -8,7 +8,7 @@ async function getFirstEvent(): Promise<GetFirstEventResult> {
   const event = await eventRepository.findFirst();
   if (!event) throw notFoundError();
 
-  return event
+  return event;
 }
 
 export type GetFirstEventResult = Omit<Event, 'createdAt' | 'updatedAt'>;

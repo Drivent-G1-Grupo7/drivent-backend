@@ -1,21 +1,21 @@
 import { prisma } from '@/config';
-import { redis } from 'config/redis'
+import { redis } from 'config/redis';
 
-const cacheKey = "event"
+const cacheKey = 'event';
 
 async function findFirst() {
   const cachedEvent = await redis.get(cacheKey);
 
   if (cachedEvent) {
-    console.log("cache")
-    const event = JSON.parse(cachedEvent)
-    return event
+    console.log('cache');
+    const event = JSON.parse(cachedEvent);
+    return event;
   }
 
-  const event = await prisma.event.findFirst()
-  redis.set(cacheKey, JSON.stringify(event))
+  const event = await prisma.event.findFirst();
+  redis.set(cacheKey, JSON.stringify(event));
 
-  return event
+  return event;
 }
 
 const eventRepository = {
